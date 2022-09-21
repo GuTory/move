@@ -1,3 +1,7 @@
+# Specifikáció változtatás
+
+A navigációs menü elhelyezésén változtattam az előző beadáshoz képest, mostantól a navbar része, nem bal oldalt helyezkedik el. Amikor pedig kellően kicsi lesz az ablak, akkor átvált szendvics menübe.
+
 # Move edzésnapló
 
 ## Modell
