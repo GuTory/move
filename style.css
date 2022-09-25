@@ -35,13 +35,47 @@ body{
     box-shadow: 10px 10px 8px #888888;
 }
 
+.exercisecontainerforindex{
+    margin: 30px ;
+    padding: 30px;
+    background: #4f4f4f;
+    color: orange ;
+    border-radius: 20px;
+}
+
+.btn-secondary{
+    margin: 15px;
+    font-weight: bold;
+    background-color: orange;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+}
+
+.btn-secondary:hover{
+    background-color: #000000;
+    color: orange;
+    border: 1px solid black;
+}
+
 .btn-primary{
-    margin: 25px;
+    margin: 15px;
     font-weight: bold;
     background-color: black;
+    border: none;
 }
 
 .btn-primary:hover{
     background-color: #000000;
+    color: orange;
+}
+
+#newCancel{
+    border: none;
+    background-color: gray;
+    color: white;
+}
+
+#newCancel:hover{
     color: orange;
 }
