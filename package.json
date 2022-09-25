@@ -1,14 +1,23 @@
 {
   "name": "move",
   "version": "1.0.0",
-  "description": "",
+  "description": "A navigációs menü elhelyezésén változtattam az előző beadáshoz képest, mostantól a navbar része, nem bal oldalt helyezkedik el. Amikor pedig kellően kicsi lesz az ablak, akkor átvált szendvics menübe.",
   "main": "index.js",
+  "dependencies": {
+    "express": "^4.18.1",
+    "exrpess": "^0.0.1-security"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuTory/move.git"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "exrpess": "^0.0.1-security"
-  }
+  "bugs": {
+    "url": "https://github.com/GuTory/move/issues"
+  },
+  "homepage": "https://github.com/GuTory/move#readme"
 }
