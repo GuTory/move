@@ -1,0 +1,107 @@
+oldalak:
+    - korábbi edzések (index.html)   - update, delete
+    - új edzés (new_workout.html)    - create
+    - feladatok (exercises.html)     - delete
+    - új feladat (new_exercise.html) - create, udpate (előtöltött adat)
+    - analitika (analytics.html)     - stonks
+
+Middleware-ek:
+
+    render
+        renderMW(...)
+
+    workouts
+        getWorkoutsMW()
+        saveWorkoutMW()
+        updateWorkoutMW(wourkoutID)
+        deleteWorkoutMW(wourkoutID)
+
+    exercises
+        getExercisesMW()
+        saveExerciseMW()
+        updateExerciseMW(exerciseID)
+        deleteExerciseMW(exerciseID)
+        addExerciseToWorkout(exerciseID, workoutID)
+        deleteExerciseFromWorkout(exerciseID, workoutID)
+
+Routing:
+
+workout {
+    /*
+        "landolási" oldal
+    */
+    GET /
+        getWorkoutsMW()
+        renderMW(index.html)
+
+    /*
+        új edzés hozzáadása
+    */
+    GET /new - new_workout.html
+        renderMW(new_workout.html)
+
+    /*
+        adatok beküldése -> átirányítás az index.html-re
+    */
+    POST /new
+        saveWorkoutMW()
+
+    /*
+        update ugyanazon az oldalon -> újrafrissíti a / oldalt
+    */
+    POST /update/:workoutID
+        updateWorkoutMW(wourkoutID)
+        renderMW
+
+    /*
+        új gyakorlat hozzáadása az edzéshez
+    */
+    POST /update/:workoutID/new
+        getWorkoutMW(workoutID)
+        addExerciseToWorkoutMW(exerciseID, workoutID)
+        updateWorkoutMW(workoutID)
+        renderMW()
+
+    /*
+        gyakorlat törlése az edzésből
+    */
+    POST /update/:workoutID/new
+        getWorkoutMW(workoutID)
+        deleteExerciseFromWorkoutMW(exerciseID, workoutID)
+        updateWorkoutMW(workoutID)
+        renderMW()
+
+    /*
+        delete ugyanazon az oldalon -> újrafrissíti a / oldalt
+    */
+    GET /delete/:workoutID
+        deleteWorkoutMW(wourkoutID)
+        renderMW(index.html)
+}
+
+
+exercise {
+    GET /exercises
+        getExercisesMW()
+        renderMW(exercises.html)
+
+    GET /exercises/new - new_exercise.html
+        renderMW(new_exercise.html)
+
+    /*
+        gyakorlat create és update, a new_exercise oldal jelenik meg,
+        csak az update esetén előre betöltött adatokkal
+    */
+    GET, POST /exercises/new - new_exercise.html (adatok beküldése)
+        getExerciseMW(exerciseID) ----
+        updateExerciseMW(exerciseID) ---- saveExerciseMW()
+        renderMW(new_exercise.html)
+
+
+    /*
+        delete ugyanazon az oldalon -> újrafrissíti a /exercises oldalt
+    */
+    GET /exercises/:exerciseID
+        deleteExerciseMW(exerciseID)
+        renderMW(new_exercise.html)
+}

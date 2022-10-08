@@ -1,6 +1,12 @@
-# Specifikáció változtatás
+# 3. beadás változtatások
+
+A statisztikákat megjelenítő oldalt kiszedtem a modellből, a házira feedbackként is ezt a megjegyzést kaptam, 
+plusz a félév folyamán nem is lenne rá idő (lenne csak az más kárára menne).
+
+# 2. beadás: specifikáció változtatás
 
 A navigációs menü elhelyezésén változtattam az előző beadáshoz képest, mostantól a navbar része, nem bal oldalt helyezkedik el. Amikor pedig kellően kicsi lesz az ablak, akkor átvált szendvics menübe.
+Az Exercises oldalon majd le kell helyezni törlés és szerkesztés gombot a feladatok mellé, de ezt majd generáltan, nem kézzel kellene elintézni. A 2. feladat specifikációit ez a verzió teljesíti.
 
 # Move edzésnapló
 
