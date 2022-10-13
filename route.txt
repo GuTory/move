@@ -1,3 +1,5 @@
+tényleges routing az index.js-ben
+
 oldalak:
     - korábbi edzések (index.html)   - update, delete
     - új edzés (new_workout.html)    - create
@@ -45,13 +47,14 @@ workout {
     */
     POST /new
         saveWorkoutMW()
+        renderMW(index.html)
 
     /*
         update ugyanazon az oldalon -> újrafrissíti a / oldalt
     */
     POST /update/:workoutID
         updateWorkoutMW(wourkoutID)
-        renderMW
+        renderMW(index.html)
 
     /*
         új gyakorlat hozzáadása az edzéshez
@@ -74,7 +77,7 @@ workout {
     /*
         delete ugyanazon az oldalon -> újrafrissíti a / oldalt
     */
-    GET /delete/:workoutID
+    GET /delete/:workoutID/
         deleteWorkoutMW(wourkoutID)
         renderMW(index.html)
 }
@@ -101,7 +104,7 @@ exercise {
     /*
         delete ugyanazon az oldalon -> újrafrissíti a /exercises oldalt
     */
-    GET /exercises/:exerciseID
+    GET /exercises/remove/:exerciseID
         deleteExerciseMW(exerciseID)
         renderMW(new_exercise.html)
 }
