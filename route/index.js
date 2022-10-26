@@ -17,40 +17,50 @@ module.exports = function (app) {
 
     app.use('/new',
         saveWorkoutMW(objRepo),
-        renderMW(objRepo));
-    app.post('/update/:workoutid',
-        getWorkoutsMW(objRepo),
-        updateWorkoutMW(objRepo),
-        renderMW(objRepo));
+        renderMW(objRepo, 'new_workout'));
+
     app.post('/update/:workoutid/new',
         getWorkoutsMW(objRepo),
         addExerciseToWorkoutMW(objRepo),
         updateWorkoutMW(objRepo),
-        renderMW(objRepo));
+        renderMW(objRepo, 'index'));
+
+    app.post('/update/:workoutid',
+        getWorkoutsMW(objRepo),
+        updateWorkoutMW(objRepo),
+        renderMW(objRepo, 'new_workout'));
+
     app.post('/update/:workoutid/remove/:exerciseid',
         getWorkoutsMW(objRepo),
         removeExerciseFromWorkoutMW(objRepo),
         updateWorkoutMW(objRepo),
-        renderMW(objRepo));
+        renderMW(objRepo, 'index'));
+
     app.post('/remove/:workoutid',
         getWorkoutsMW(objRepo),
         removeWorkoutMW(objRepo),
-        renderMW(objRepo));
+        renderMW(objRepo, 'index'));
+
+    app.use('/exercises/new',
+        getExercisesMW(objRepo),
+        saveExerciseMW(objRepo),
+        renderMW(objRepo, 'new_exercise'));
+
     app.get('/exercises',
         getExercisesMW(objRepo),
-        renderMW(objRepo));
-    app.use('/exercises/new',
-        saveExerciseMW(objRepo),
-        renderMW(objRepo));
+        renderMW(objRepo, 'exercises'));
+
     app.use('/exercises/update/:exerciseid',
         getExercisesMW(objRepo),
         updateExerciseMW(objRepo),
-        renderMW(objRepo));
+        renderMW(objRepo, 'new_exercise'));
+
     app.use('/exercises/remove/:exerciseid',
         getExercisesMW(objRepo),
         removeExerciseMW(objRepo),
-        renderMW(objRepo));
+        renderMW(objRepo, 'exercises'));
+
     app.get('/',
         getWorkoutsMW(objRepo),
-        renderMW(objRepo));
+        renderMW(objRepo, 'index'));
 };

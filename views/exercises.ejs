@@ -1,0 +1,47 @@
+<%- include('header') -%>
+
+<%- include('navbar') -%>
+
+<% exercises.data.forEach(element => { %>
+    <div class="container containerstyle">
+        <div class="row" style="justify-content: flex-start">
+            <div style="width: 100%">
+                <div class="row h3">
+                    <label class="col-4 col-form-label">
+                        <%= element.type %>
+                    </label>
+                </div>
+
+                <div class="excercisecontainer">
+                    <% element.name.forEach(exercise => { %>
+                        <div class="excercise col-9" style="float: left">
+                            <label class="col-form-label">
+                                <%= exercise %>
+                            </label>
+                        </div>
+
+                        <a class="btn col-1 editbtn" id="editButton" href= <%= "/exercises/update/" + exercise._id %>>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+
+                        <a class="btn btn-danger col-1 removebtn" id="deleteButton"
+                           href= <%= "/exercises/remove/" + exercise._id %>>
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    <% }); %>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary col-10" id="newButtonAbs" href="/new">New Excercise
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }); %>
+
+<!--
+    TODO: kuka gomb csináljon valamit
+-->
+
+
+<%- include('footer') -%>

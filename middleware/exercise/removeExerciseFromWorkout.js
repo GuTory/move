@@ -11,6 +11,6 @@ module.exports = function (objectrepository){
          * kapcsolótáblából ki kell venni -> nem kaszkádolt törlés
          */
 
-        next();
+        return next();
     }
 }

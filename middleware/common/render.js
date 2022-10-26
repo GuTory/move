@@ -1,16 +1,12 @@
 /**
- * oldal kirendereléséért felelős middleware
+ * Viewname paraméterű kirendereléséért felelős middleware
  */
-const requireOption = require('./requireOption');
 
-module.exports = function (objectrepository){
+module.exports = function (objectrepository, ViewName){
 
-    return function (req, res, next){
-
-        /**
-         * ADATOK + HTML -> KIRENDERELÉS
-         */
-
-        next();
-    }
-}
+    return function (req, res){
+        res.render(ViewName,
+            res.locals);
+        console.log('site rendered: ' + ViewName);
+    };
+};
