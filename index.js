@@ -1,14 +1,21 @@
 var express = require('express');
 var ejs = require('ejs');
 var app = express();
+var bodyParser = require('body-parser')
 
 app.set('view engine', 'ejs');
 
+/**
+ * bodyparser
+ */
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 /**
  * Static stuff
  */
 app.use('/public', express.static('./public'));
+
 
 /**
  * Let's creat the .tpl and .error on the res object
@@ -39,4 +46,3 @@ app.use(function (err, req, res, next) {
 var server = app.listen(3000, function () {
     console.log('Hello :3000');
 });
-

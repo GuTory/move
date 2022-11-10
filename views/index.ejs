@@ -6,14 +6,15 @@
     TODO: CRUD az edzéseken
 -->
 
-<% workouts.data.forEach(workout => { %>
+<% workouts.forEach(workout => { %>
     <div class="container containerstyle" style="justify-content: space-evenly">
         <div class="row" style="justify-content: center">
-            <form style="width: 100%; justify-content: center">
+            <form method="post" style="width: 100%; justify-content: center">
+                <input type="hidden" name="_id" value=<%= workout._id %> >
                 <div class="form-group row">
-                    <label for="inputName" class="col-4 col-form-label">Name</label>
+                    <label for="name" class="col-4 col-form-label">Name</label>
                     <div class="col-6">
-                        <input type="text" class="form-control" id="inputName" placeholder="Name"
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name"
                                value=
                                <% if (workout.name !== undefined){ %>
                                    '<%= workout.name %>'
@@ -29,11 +30,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="inputStartTime" class="col-4 col-form-label">
+                    <label for="start_time" class="col-4 col-form-label">
                         Start Time
                     </label>
                     <div class="col-6">
-                        <input type="datetime-local" class="form-control" id="inputStartTime" placeholder="Start Time"
+                        <input type="datetime-local" class="form-control" id="start_time" name="start_time" placeholder="Start Time"
                                value=
                                <% if(workout.start_time !== undefined){ %>
                                    '<%= workout.start_time %>'
@@ -43,11 +44,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="inputEndTime" class="col-4 col-form-label">
+                    <label for="finish_time" class="col-4 col-form-label">
                         Finish Time
                     </label>
                     <div class="col-6">
-                        <input type="datetime-local" class="form-control" id="inputEndTime" placeholder="Finish Time"
+                        <input type="datetime-local" class="form-control" id="finish_time" name="finish_time" placeholder="Finish Time"
                                value=
                                <% if (workout.finish_time !== undefined){ %>
                                    '<%= workout.finish_time %>'
@@ -57,11 +58,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="inputWeight" class="col-4 col-form-label">
+                    <label for="weight" class="col-4 col-form-label">
                         Weight
                     </label>
                     <div class="col-6">
-                        <input type="number" step="0.1" class="form-control" id="inputWeight" placeholder="Weight"
+                        <input type="number" step="0.1" class="form-control" id="weight" name="weight" placeholder="Weight"
                                value=
                                <% if (workout.weight !== undefined){ %>
                                    '<%= workout.weight %>'
@@ -71,11 +72,11 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="inputNotes" class="col-4 col-form-label">
+                    <label for="notes" class="col-4 col-form-label">
                         Notes
                     </label>
                     <div class="col-6">
-                        <input type="text" class="form-control" id="inputNotes" placeholder="Notes"
+                        <input type="text" class="form-control" name="notes" id="notes" placeholder="Notes"
                                value=
                                <% if (workout.notes !== undefined){ %>
                                    '<%= workout.notes %>'
@@ -87,49 +88,20 @@
                 <% workout.exercises.forEach(exercise => { %>
                     <div class="row exercisecontainerforindex col-10 justify-content-center">
 
-                        <label for="bpset" class="col-12 col-form-label" style="font-weight: bolder; font-size: larger">
-                            <% if (exercise.name !== undefined){ %>
-                                <%= exercise.name %>
+                        <label class="col-12 col-form-label" style="font-weight: bolder; font-size: larger">
+                            <% if (exercise !== undefined){ %>
+                                <%= exercise.name + ' (' + exercise.type + ')' %>
                             <% } %>
                         </label>
-                        <% exercise.sets.forEach(set => { %>
-                            <label for="bprep" class="col-4">
-                                Set <%= exercise.sets.indexOf(set) + 1 %>
-                            </label>
-                            <div class="col-4">
-                                <input type="number" class="form-control" id="bpset" placeholder="Weight"
-                                       value=
-                                       <% if (set.weight !== undefined){ %>
-                                           '<%= set.weight %>'
-                                        <% } %>
-                                >
-                            </div>
-                            <div class="col-4">
-                                <input type="number" class="form-control" id="bprep" placeholder="Number of Reps"
-                                       value=
-                                       <% if (set.reps !== undefined){ %>
-                                           '<%= set.reps %>'
-                                        <% } %>
-                                >
-                            </div>
-                        <% }); %>
-
-                        <button class="btn-secondary col-md-4" style="">
-                            Add New Set
-                        </button>
                     </div>
                 <% }); %>
 
                 <div class="justify-content-center">
-                    <button type="submit" class="btn-secondary col-4" id="newExerciseButton">
-                        Add New Exercise
-                    </button>
+                    <input type="submit" class="btn-secondary col-4" id="newExerciseButton" value="Add New Exercise"/>
 
                     <button class="btn-secondary col-1" style="visibility: hidden"></button>
 
-                    <button type="submit" class="btn btn-primary col-4" id="saveButton1">
-                        Save
-                    </button>
+                    <input type="submit" class="btn btn-primary col-4" id="saveButton1" formaction=<%= "/update/" + workout._id %> >
                 </div>
             </form>
         </div>

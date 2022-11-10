@@ -83,7 +83,8 @@ body {
 }
 
 .editbtn {
-    color: black;
+    background-color: black;
+    color: orange;
 }
 
 .removebtn {

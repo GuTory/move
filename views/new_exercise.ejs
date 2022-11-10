@@ -7,39 +7,53 @@
         <div style="width: 100%">
             <div class="row h3">
                 <label class="col-4 col-form-label">
-                    New Exercise
+                    <% if(searchedexercise !== undefined) { %>
+                        New Exercise
+                    <% } else { %>
+                        Update Exercise
+                    <% } %>
+
                 </label>
             </div>
 
-            <div class="form-group row">
-                <label for="inputExercise" class="col-4 col-form-label">
-                    Exercise Name
-                </label>
-                <div class="col-6">
-                    <input type="text" step="0.1" class="form-control" id="inputExercise" placeholder="Exercise Name">
+            <form id="newExerciseForm" method="post">
+                <div class="form-group row">
+                    <label for="name" class="col-4 col-form-label">
+                        Exercise Name
+                    </label>
+                    <div class="col-6">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Exercise Name"
+                        <% if (searchedexercise[0] !== undefined){ %>
+                               value="<%= searchedexercise[0].name %>"
+                                <% } %>
+                        />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label for="inputType" class="col-4 col-form-label">
-                    Exercise Type
-                </label>
-                <div class="col-6">
-                    <select id="inputType" name="Type">
-                        <% exercises.data.forEach(element => { %>
-                            <option value=
-                                    <% element.type %>
-                            > <%= element.type %> </option>
-                        <% }); %>
-                    </select>
+                <div class="form-group row">
+                    <label for="type" class="col-4 col-form-label">
+                        Exercise Type
+                    </label>
+                    <div class="col-6">
+                        <input type="text" class="form-control" id="type" name="type" placeholder="Type of Exercise"
+                        <% if (searchedexercise[0] !== undefined){ %>
+                               value="<%= searchedexercise[0].type %>"
+                                <% } %>
+                        />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <button type="submit" class="btn btn-primary col-4" id="newButtonAbs">Add New Excercise</button>
-                <button class="btn btn-secondary col-3" id="newCancel">Cancel</button>
-            </div>
-
+                <div class="form-group row">
+                    <input type="submit" class="btn btn-primary col-4" id="newButton"
+                    <% if(searchedexercise[0] === undefined) { %>
+                           value="Add New Exercise"
+                    <% } else { %>
+                           value="Update Exercise"
+                            <% } %>
+                    />
+                    <a class="btn btn-secondary col-3" id="newCancel" href="/">Cancel</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>

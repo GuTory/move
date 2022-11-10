@@ -1,34 +1,42 @@
 /**
- * gyakorlatok lekérése az adatbázisból
+ * gyakorlatok lekérése az adatbázisból, és átrendezése típus szerint
  */
 const requireOption = require('../common/requireOption');
 
 module.exports = function (objectrepository) {
 
+    const ExerciseModel = requireOption(objectrepository, 'ExerciseModel');
+
     return function (req, res, next) {
 
-        //mockolt getter
-        res.locals.exercises = {
-            data:
-                [
-                    {
-                        type: "Abs",
-                        name: ["Crunch", "Leg Raises", "Machine Rotation"]
-                    },
-                    {
-                        type: "Back",
-                        name: ["Chin-up", "Face Pull", "Cable Row"]
-                    },
-                    {
-                        type: "Biceps",
-                        name: ["Incline Dumbbell Curl", "Hammer Curl", "Machine Curl"]
-                    },
-                    {
-                        type: "Chest",
-                        name: ["Barbell Bench Press", "Chest Fly", "Pec Deck"]
-                    }
-                ]
-        };
-        return next();
+        ExerciseModel.find({}, (err, exercises) => {
+            if (err) {
+                return next(err);
+            }
+            let mapped = [];
+            exercises.forEach(e => {
+                if (!mapped.map(a => a.type).includes(e.type)) {
+                    let temp = {
+                        type: e.type,
+                        name: []
+                    };
+                    temp.name.push(
+                        {
+                            name: e.name,
+                            id: e._id
+                        });
+                    mapped.push(temp);
+                } else {
+                    mapped.find(exercise => exercise.type === e.type)
+                        .name.push(
+                        {
+                            name: e.name,
+                            id: e._id
+                        });
+                }
+            });
+            res.locals.exercises = mapped;
+            return next();
+        });
     }
 }

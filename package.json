@@ -4,9 +4,11 @@
   "description": "A navigációs menü elhelyezésén változtattam az előző beadáshoz képest, mostantól a navbar része, nem bal oldalt helyezkedik el. Amikor pedig kellően kicsi lesz az ablak, akkor átvált szendvics menübe.",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "exrpess": "^0.0.1-security",
+    "mongoose": "^6.7.0",
     "nodemon": "^2.0.20"
   },
   "scripts": {

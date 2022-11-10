@@ -2,7 +2,7 @@
 
 <%- include('navbar') -%>
 
-<% exercises.data.forEach(element => { %>
+<% exercises.forEach(element => { %>
     <div class="container containerstyle">
         <div class="row" style="justify-content: flex-start">
             <div style="width: 100%">
@@ -14,34 +14,29 @@
 
                 <div class="excercisecontainer">
                     <% element.name.forEach(exercise => { %>
-                        <div class="excercise col-9" style="float: left">
-                            <label class="col-form-label">
-                                <%= exercise %>
-                            </label>
-                        </div>
 
-                        <a class="btn col-1 editbtn" id="editButton" href= <%= "/exercises/update/" + exercise._id %>>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
+                            <form method="get" class="col-10" style="display: inline">
+                                <label class="col-form-label col-6" for="editButton">
+                                    <%= exercise.name %>
+                                </label>
+                                <input type="submit" class="btn col-2 editbtn " id="editButton"
+                                       formaction="/exercises/update/<%= exercise.id %>" value="Edit"/>
+                            </form>
 
-                        <a class="btn btn-danger col-1 removebtn" id="deleteButton"
-                           href= <%= "/exercises/remove/" + exercise._id %>>
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
+                            <form method="post" class="col-2" style="display: inline">
+                                <input type="submit" class="btn btn-danger col-2 removebtn" id="deleteButton"
+                                       formaction="exercises/remove/<%= exercise.id %>" value="Delete" />
+                            </form>
                     <% }); %>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary col-10" id="newButtonAbs" href="/new">New Excercise
+                    <button type="submit" class="btn btn-primary col-10" id="newButtonAbs" href="/exercises/new">New Excercise
                     </button>
                 </div>
             </div>
         </div>
     </div>
 <% }); %>
-
-<!--
-    TODO: kuka gomb csináljon valamit
--->
 
 
 <%- include('footer') -%>
