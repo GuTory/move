@@ -16,7 +16,7 @@ app.use(bodyParser.json());
  */
 app.use('/public', express.static('./public'));
 
-
+console.log('ez egy nagyon regi verzio');
 /**
  * Let's creat the .tpl and .error on the res object
  */
